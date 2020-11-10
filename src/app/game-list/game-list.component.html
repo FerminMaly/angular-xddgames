@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table text-center">
     <thead>
         <tr>
             <th>Imagen</th>
@@ -6,21 +6,22 @@
             <th>Categoria</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Compra</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><img [src]="Game.image" [alt]="Game.nombre" ></td>
-            <td>{{Game.nombre}}</td>
-            <td>{{Game.categoria}}</td>
-            <td>{{Game.precio}}</td>
-            <td>{{Game.stock}}</td>
-        </tr>
-        <tr>
-            <td>Pacman</td>
-            <td>Plataforma</td>
-            <td>$1.000</td>
-            <td>500</td>
+        <tr *ngFor="let game of games" [ngClass]="{'oferta': game.oferta}">
+            <td><img [src]="game.image" class="img-thumbnail" [alt]="game.nombre" ></td>
+            <td>{{game.nombre}}</td>
+            <td>{{game.categoria}}</td>
+            <td>{{game.precio | currency}}</td>
+            <td *ngIf="game.stock == 0; else sinStock"><span class="badge badge-warning">SIN STOCK</span></td>
+            <ng-template #sinStock>{{game.stock}}</ng-template>
+            <td>
+                <button class="btn btn-primary btn-sm" (click)="downQuantity(game)">-</button>
+                <input type="number" [(ngModel)]="game.quantity" (keyup)="changeQuantity($event, game)">
+                <button class="btn btn-primary btn-sm" (click)="upQuantity(game)">+</button>
+            </td>
         </tr>
     </tbody>
 </table>
