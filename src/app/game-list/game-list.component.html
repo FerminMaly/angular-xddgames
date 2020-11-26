@@ -18,9 +18,8 @@
             <td *ngIf="game.stock == 0; else sinStock"><span class="badge badge-warning">SIN STOCK</span></td>
             <ng-template #sinStock>{{game.stock}}</ng-template>
             <td>
-                <button class="btn btn-primary btn-sm" (click)="downQuantity(game)">-</button>
-                <input type="number" [(ngModel)]="game.quantity" (keyup)="changeQuantity($event, game)">
-                <button class="btn btn-primary btn-sm" (click)="upQuantity(game)">+</button>
+                <app-input-integer [quantity]="game.quantity" [max]="game.stock"></app-input-integer>
+                <button class="btn" (click)="addToCart(game)">Comprar</button>
             </td>
         </tr>
     </tbody>

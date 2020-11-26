@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { GamesComponent } from './games/games.component';
 import { AboutComponent } from './about/about.component';
+import { InputIntegerComponent } from './input-integer/input-integer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AboutComponent } from './about/about.component';
     GameListComponent,
     CartComponent,
     GamesComponent,
-    AboutComponent
+    AboutComponent,
+    InputIntegerComponent
   ],
   imports: [
     BrowserModule,

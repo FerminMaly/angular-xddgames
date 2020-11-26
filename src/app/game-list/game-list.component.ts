@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameCartService } from '../game-cart.service';
 import { Game } from './Game';
 
 @Component({
@@ -45,25 +46,16 @@ export class GameListComponent implements OnInit {
       quantity:0,
     },
   ]
+  cart: GameCartService;
     
-  constructor() { }
+  constructor(private Game: GameCartService) { 
+  }
 
   ngOnInit(): void {
   }
 
-  upQuantity(game:Game): void{
-    if (game.quantity < game.stock)
-      game.quantity++;
-  }
-
-  downQuantity(game:Game): void{
-    if(game.quantity > 0)
-      game.quantity--;
-  }
-
-  changeQuantity(event, game:Game): void {
-    if (event.key !=0,1,2,3,4,5,6,7,8,9)
-      console.log(event.key);
+  addToCart(game):void {
+    this.cart.addToCart(game);
   }
 
 }
