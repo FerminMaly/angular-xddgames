@@ -55,7 +55,13 @@ export class GameListComponent implements OnInit {
   }
 
   addToCart(game):void {
-    this.cart.addToCart(game);
+    this.Game.addToCart(game);
+    game.stock -= game.quantity;
+    game.quantity = 0;
+  }
+
+  maxReached(m: string){
+    alert(m);
   }
 
 }

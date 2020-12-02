@@ -7,6 +7,7 @@
             <th>Precio</th>
             <th>Stock</th>
             <th>Compra</th>
+            <th>Agregar</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +19,9 @@
             <td *ngIf="game.stock == 0; else sinStock"><span class="badge badge-warning">SIN STOCK</span></td>
             <ng-template #sinStock>{{game.stock}}</ng-template>
             <td>
-                <app-input-integer [quantity]="game.quantity" [max]="game.stock"></app-input-integer>
+                <app-input-integer [(quantity)]="game.quantity" [max]="game.stock" (maxReached)="maxReached($event)"></app-input-integer>
+            </td>
+            <td>
                 <button class="btn" (click)="addToCart(game)">Comprar</button>
             </td>
         </tr>

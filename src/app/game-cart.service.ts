@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Game } from './game-list/Game';
 
 @Injectable({
@@ -6,13 +7,25 @@ import { Game } from './game-list/Game';
 })
 export class GameCartService {
 
-  shopList: Game[] = [];
+  constructor() {}
 
-  constructor() { }
+  private _shopList: Game [] = [];
+  
+  shopList: BehaviorSubject<Game[]> = new BehaviorSubject([]);
+
+
+  
 
   addToCart(game: Game) {
-    this.shopList.push(game);
-    console.log(this.shopList.length);
+    let item:Game = this._shopList.find((v1)=> v1.nombre = game.nombre);
+    if (!item){
+      this._shopList.push({...game}); 
+    }
+    else {
+      item.quantity += game.quantity;
+    }
+    console.log(this._shopList);
+    this.shopList.next(this._shopList);
   }
 
 
