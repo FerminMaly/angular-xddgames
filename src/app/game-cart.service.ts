@@ -17,7 +17,7 @@ export class GameCartService {
   
 
   addToCart(game: Game) {
-    let item:Game = this._shopList.find((v1)=> v1.nombre = game.nombre);
+    let item:Game = this._shopList.find((v1)=> v1.nombre == game.nombre);
     if (!item){
       this._shopList.push({...game}); 
     }
